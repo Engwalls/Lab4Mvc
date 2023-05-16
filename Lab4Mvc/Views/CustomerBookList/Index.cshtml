@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Lab4Mvc.Models.CustomerBookList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All bookings</h1>
+
+<p>
+    <a asp-action="Create">Create New Booking</a>
+</p>
+<hr />
+<form asp-action="Search">
+    <div class="form-group">
+        <label for="SearchCustomer" class="control-label">Search customer:</label>
+        <input type="text" name="SearchCustomer" placeholder="First name" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+    <a href="@Url.Action("Index")">Clear search</a>
+</form>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Retrieved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Returned)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customers.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Books.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Books.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Retrieved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Returned)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CuBoListId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CuBoListId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CuBoListId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

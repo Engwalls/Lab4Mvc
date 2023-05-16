@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Customer>
+
+<form asp-controller="Customer" asp-action="SearchCustomers" method="get">
+    <div class="form-group">
+        <label for="searchString">Search:</label>
+        <input type="text" class="form-control" name="searchString" value="@ViewBag.CurrentFilter" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Registered date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CustomerId</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.RegisteredDate.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
